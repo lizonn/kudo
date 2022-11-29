@@ -1,4 +1,24 @@
 
+from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+# root.wm_state('zoomed')
+root.attributes('-fullscreen', 1)
+# root.config(bg='#9FD996')
+
+
+
+# TODO: переписать размеры
+if (root.winfo_screenwidth() >= 1950) or (root.winfo_screenheight() >= 1200):
+    root.tk.call('tk', 'scaling', 2)
+elif  (root.winfo_screenwidth() >= 1900) or (root.winfo_screenheight() >= 1080):
+    root.tk.call('tk', 'scaling', 1.80)
+elif (root.winfo_screenwidth() > 1500) or (root.winfo_screenheight() > 800):
+    root.tk.call('tk', 'scaling', 1.5)
+elif (root.winfo_screenwidth() > 1200) or (root.winfo_screenheight() > 700):
+    root.tk.call('tk', 'scaling', 1.25)
+
 
 def action_left (event,name,side):
     if (name == koka) or (name == koka_blue):
@@ -127,6 +147,7 @@ def push_hansoku(event,name,):
                 score_white.config(text=int(score_white.cget("text")) - 1)
             name.config(bg='white')
             blue_counter -= 1
+
     elif name == hansoku_two_blue:
         if (name.cget("bg") != 'red'):
             name.config(bg='red')

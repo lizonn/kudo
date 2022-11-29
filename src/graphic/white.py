@@ -1,10 +1,13 @@
 from tkinter import *
 
-from src.logic import MouseClick, MarkType,SideType
+from src.logic.points import MouseClick, MarkType,SideType
 
 
 class WhiteSide:
-    def __init__(self,root):
+    def __init__(self,root,score_white,score_blue):
+        self.score_blue = score_blue
+        self.score_white = score_white
+
         white_gr = Frame(root)
         white_gr.grid(row=0, column=0, rowspan=2, pady=(10, 10))
 
@@ -25,28 +28,26 @@ class WhiteSide:
         click = MouseClick()
 
         b_koka = Label(white_gr,text="0",width=5, height=4, bg='white',borderwidth = 2, relief="raised",  font='Times 36')
-        b_koka.bind('<Button-1>', lambda event: click.left_click(MarkType.KOKA, b_koka, score_white)) # общий счет потом переписать
-        b_koka.bind('<Button-3>', lambda event: click.right_click(MarkType.KOKA,b_koka,score_white))
+        b_koka.bind('<Button-1>', lambda event: click.left_click(MarkType.KOKA, b_koka, self.score_white))
+        b_koka.bind('<Button-3>', lambda event: click.right_click(MarkType.KOKA,b_koka,self.score_white))
         b_koka.grid(row=2, column=0,columnspan=4,rowspan=6,sticky='nsew',padx=(5, 5))
 
         b_yuko = Label(white_gr,text="0", width=5, height=4, bg='white', borderwidth=2, relief="raised", font='Times 36')
-        b_yuko.bind('<Button-1>', lambda event: click.left_click(MarkType.YUKO, b_yuko, score_white))
-        b_yuko.bind('<Button-3>', lambda event: click.right_click(MarkType.YUKO, b_yuko, score_white))
+        b_yuko.bind('<Button-1>', lambda event: click.left_click(MarkType.YUKO, b_yuko, self.score_white))
+        b_yuko.bind('<Button-3>', lambda event: click.right_click(MarkType.YUKO, b_yuko, self.score_white))
         b_yuko.grid(row=2, column=4,columnspan=4,rowspan=6,sticky='nsew',padx=(5, 5))
 
         b_wari = Label(white_gr,text="0",width=5, height=4, bg='white', borderwidth = 2, relief="raised", font='Times 36')
-        b_wari.bind('<Button-1>', lambda event: click.left_click(MarkType.WARI, b_wari, score_white))
-        b_wari.bind('<Button-3>', lambda event: click.right_click(MarkType.WARI, b_wari, score_white))
+        b_wari.bind('<Button-1>', lambda event: click.left_click(MarkType.WARI, b_wari, self.score_white))
+        b_wari.bind('<Button-3>', lambda event: click.right_click(MarkType.WARI, b_wari, self.score_white))
         b_wari.grid(row=2, column=8,columnspan=4,rowspan=6,sticky='nsew',padx=(5, 5))
 
 
 
-        # TODO: общий счет добавить потом отдельно создав отдельный грид
-        score_white = Label(text="0",width=3, height=3,  bg='white', borderwidth = 2, relief="raised", font='Times 60')
-        score_white.grid(row=4, column=0, sticky='we',padx=(0, 5),pady=(30,20))
+        # # TODO: общий счет добавить потом отдельно создав отдельный грид
+        # self.score_white = Label(text="0",width=3, height=3,  bg='white', borderwidth = 2, relief="raised", font='Times 60')
+        # self.score_white.grid(row=4, column=0, sticky='we',padx=(0, 5),pady=(30,20))
 
-    # def right_click(self):
-    #     click = MouseClick()
-    #     return click.left_click(name_button, button_to_click, side_main_score)
+
 
 
